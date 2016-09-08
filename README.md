@@ -99,14 +99,14 @@ In the platform delivery package ,There will be multiple rpms and parcels,below 
  
 				chmod -R 777 .
 				
-	1.2 As of now, we have to manually download rpms from http://10.142.139.149:8080/job/CLoudera_Build/ and place in /opt/cto/distribution later complete package will be bundled and given.
+	1.2 As of now, we have to manually download rpms from http://XXX.XXX.XXX.XXX:8080/job/CLoudera_Build/ and place in /opt/cto/distribution later complete package will be bundled and given.
 
 2. Extracting all the python installation scripts and templates in /opt/cto/scripts/ location
 
 	Run the the command:
 		cd /opt/cto/distribution/
 
-		rpm -ivh NSN-CTO-dev-script-1.0.0-47.noarch.rpm
+		rpm -ivh XXX-CTO-dev-script-1.0.0-47.noarch.rpm
 
 3. Modify the host related values in platform_template.xml file under /opt/cto/conf/ directory which specifies the host on which CM and CDH components is to be installed.
 	
@@ -129,10 +129,6 @@ In the platform delivery package ,There will be multiple rpms and parcels,below 
 		Run the command: 
 			cd /opt/cto/distribution
 
-			rpm -ivh NSN-CTO-thirdparty-libs-1.0.0-47.noarch.rpm
+			rpm -ivh XXX-CTO-thirdparty-libs-1.0.0-47.noarch.rpm
 
-7. To update the ngdb-hive-udf, nexr-hive-udf jars in /opt/nsn/ngdb/customudf/lib/
-	Run the command:
-		cd /opt/cto/distribution
-		
-		rpm -ivh NSN-CTO-thirdparty-udf-1.0.0-47.noarch.rpm
+
