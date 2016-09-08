@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XML-Schema-instance"
+        xmlns="http://maven.apache.org/POM/4.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0 http://maven.apache.org/maven-v4_0_0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+        <groupId>com.nsn.ctoaa.dist</groupId>
+        <artifactId>NSN-CTO-dev-script</artifactId>
+        <version>1.0.0</version>
+        <packaging>pom</packaging>
+        <name>NSN-CTO-dev-script</name>
+       
+        <build>
+                <plugins>
+                        <plugin>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>rpm-maven-plugin</artifactId>
+                                <version>2.0-beta-1</version>
+                                <executions>
+                                        <execution>
+                                                <phase>package</phase>
+                                                <goals>
+                                                        <goal>rpm</goal>
+                                                </goals>
+                                        </execution>
+                                </executions>
+                                <configuration>
+                                        <release>${PackageName}</release>
+                                        <copyright>2016,NSN</copyright>
+                                        <distribution>CTODistro</distribution>
+                                        <group>Development/Debuggers</group>
+                                        <mappings>
+                                              <mapping>
+                                                        <directory>/opt/cto/scripts/</directory>
+                                                        <filemode>777</filemode>
+                                                        <username>root</username>
+                                                        <groupname>root</groupname>
+                                                        <sources>
+                                                                <source>
+                                                                        <location>scripts/</location>
+																		<includes>
+																			<directory>**/*</directory>
+																		</includes>
+                                                                </source>
+																
+                                                        </sources>
+                                              </mapping>
+                                              <mapping>
+                                                        <directory>/opt/cto/service_monitor_scripts/</directory>
+                                                        <filemode>755</filemode>
+                                                        <username>root</username>
+                                                        <groupname>root</groupname>
+                                                        <sources>
+                                                                <source>
+                                                                        <location>service_monitor_scripts/</location>
+										<includes>
+											<directory>**/*</directory>
+										</includes>
+                                                                </source>							
+                                                        </sources>
+                                                </mapping>
+						<mapping>
+                                                        <directory>/opt/cto/conf/</directory>
+                                                        <filemode>777</filemode>
+                                                        <username>root</username>
+                                                        <groupname>root</groupname>
+                                                        <sources>
+                                                                <source>
+                                                                        <location>conf/</location>
+																		<includes>
+																			<directory>**/*</directory>
+																		</includes>
+                                                                </source>
+																
+                                                        </sources>
+                                                </mapping>
+                                        </mappings>
+										<postinstallScript>postscript.sh</postinstallScript>
+                                       <!-- <preremoveScript>resources/cleanupWars.sh</preremoveScript> -->
+                                </configuration>
+                        </plugin>
+                </plugins>
+                <directory>${RPMS_DIR}/Cloudera/dev-script</directory>
+                <finalName>${artifactId}-${PackageName}</finalName>
+        </build>
+</project>                                                                 

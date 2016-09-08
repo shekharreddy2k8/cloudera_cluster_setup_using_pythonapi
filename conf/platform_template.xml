@@ -1,0 +1,196 @@
+<platform>
+
+	<distribution>
+		<property name="distribution" value="CDH5" />
+		<property name="version" value="5.7.0" />
+		<property name="database" value="MariaDB" />		
+		<property name="cluster_name" value="cluster" />
+		<property name="parcel_version" value="5.7.0-1.cdh5.7.0.p0.45" />
+		<property name="package_path" value="/opt/cto/distribution/" />
+	</distribution>
+
+	<manager>
+		<property name="host" value="" />
+		<property name="cm_user" value="admin" />
+		<property name="cm_pass" value="admin" />
+		<property name="cmdb_root_password" value="root123" />
+		<property name="ntpserver" value="" />
+		<manager-config>
+			<property name="TSQUERY_STREAMS_LIMIT" value="1000" />
+		</manager-config>
+		<amon-config name="ACTIVITYMONITOR">
+			<property name="firehose_database_host" value="" />
+			<property name="firehose_database_user" value="amon" />
+			<property name="firehose_database_password" value="amon_password" />
+			<property name="firehose_database_type" value="mysql" />
+			<property name="firehose_database_name" value="amon" />
+		</amon-config>
+
+		<apub-config name="ALERTPUBLISHER">	 
+		</apub-config>
+
+		<eserv-config name="EVENTSERVER">
+		</eserv-config>
+
+		<hmon-config name="HOSTMONITOR">
+		</hmon-config>
+
+		<smon-config name="SERVICEMONITOR">
+		</smon-config>
+
+		<nav-config name="NAVIGATOR">
+			<property name="navigator_database_host" value="" />
+			<property name="navigator_database_user" value="nav" />
+			<property name="navigator_database_password" value="nav_password" />
+			<property name="navigator_database_type" value="mysql" />
+			<property name="navigator_database_name" value="nav" />
+		</nav-config>
+
+		<navms-config name="NAVIGATORMETADATASERVER">
+		</navms-config>
+
+		<rman-config name="REPORTMANAGER">
+			<property name="headlamp_database_host" value="" />
+			<property name="headlamp_database_user" value="rman" />
+			<property name="headlamp_database_password" value="rman_password" />
+			<property name="headlamp_database_type" value="mysql" />
+			<property name="headlamp_database_name" value="nav" />   
+		</rman-config>	 	 
+	</manager>
+	
+	<cm_mysqldb>
+		<property name="hosts" value="" />
+		<property name="mysql_vip_port" value="" />	
+		<property name="Backup_Server" value="" />	
+	</cm_mysqldb>
+	
+	<kerberos>   
+		<property name="enable" value="yes" />
+		<property name="KDC_HOST" value="" />
+		<property name="SECURITY_REALM" value="NOKIA.COM" />
+		<property name="admin_username" value="admin" />
+		<property name="admin_password" value="admin" />
+	</kerberos> 
+
+	<zookeeper name="ZOOKEEPER" >
+		<property name="hosts" value="" />
+		<zookeeper-service-config name="ZOOKEEPER">
+			<property name="zookeeper_datadir_autocreate" value="true" />
+		</zookeeper-service-config>
+		<zookeeper-server-config name="SERVER">
+			<property name="clientPort" value="2181" />
+		</zookeeper-server-config>
+	</zookeeper>
+
+	<hdfs name="HDFS">
+		<property name="Master" value="" />
+		<property name="Slave" value="" />
+		<property name="journal" value="" />
+		<hdfs-service-config name="HDFS">
+			<property name="dfs_permissions" value="false" />
+			<property name="dfs_replication" value="1" />
+		</hdfs-service-config>
+		<hdfs-namenode-config name="NAMENODE">
+			<property name="dfs_name_dir_list" value="/Data0/dfs/nn" />		   
+			<property name="dfs_federation_namenode_nameservice" value="mycluster" />			
+		</hdfs-namenode-config>
+		<hdfs-secondarynamenode-config name="SECONDARYNAMENODE">
+			<property name="fs_checkpoint_dir_list" value="/Data0/dfs/snn" />		 
+			<property name="dfs_secondarynamenode_nameservice" value="mycluster" />				
+		</hdfs-secondarynamenode-config>
+		<hdfs-datanode-config name="DATANODE">
+			<property name="dfs_data_dir_list" value="/Data0/dfs/dn" />
+		</hdfs-datanode-config>
+		<hdfs-journal-config name="JOURNALNODE">
+			<property name="dfs_journalnode_edits_dir" value="/opt/dfs/jn" />
+		</hdfs-journal-config>
+	</hdfs>
+
+	<!-- yarn considers the service and the roles to be deployed on the HDFS Master and Slave Nodes  -->
+	<yarn name="YARN">
+		
+		<property name="Master" value="" />
+		<property name="Slave" value="" />
+		<property name="gateway" value="" />
+
+		<yarn-service-config>		
+			<property name="hdfs_service" value="HDFS" />
+		</yarn-service-config>
+		<yarn-rm-config name="RESOURCEMANAGER">
+		</yarn-rm-config>		
+		<yarn-nm-config name="NODEMANAGER">
+			<property name="yarn_nodemanager_local_dirs" value="/Data0/dfs/yarn/nm" />
+		</yarn-nm-config>		
+		<yarn-jhs-config name="JOBHISTORY">		
+		</yarn-jhs-config>
+		<yarn-gw-config name="YARN-GATEWAY">	
+			<property name="mapred_submit_replication" value="3" />
+		</yarn-gw-config>
+	</yarn>
+
+	<hive name="HIVE">
+		<property name="hosts" value="" />
+		<property name="gateway" value="" />
+		<hive-service-config name="HIVE">
+			<property name="hive_metastore_database_host" value="" />
+			<property name="hive_metastore_database_name" value="metastore" />
+			<property name="hive_metastore_database_password" value="hive" />
+			<property name="hive_metastore_database_port" value="" />
+			<!-- valid hive_metastore_database_type are mysql/postgresql -->
+			<property name="hive_metastore_database_type" value="mysql" />
+			<property name="mapreduce_yarn_service" value="YARN" />
+			<!--<property name="spark_on_yarn_service" value="SPARK_ON_YARN" />-->
+			<property name="zookeeper_service" value="ZOOKEEPER" />
+			<property name="hive_aux_jars_path_dir" value="" />
+		</hive-service-config >
+		<hive-metastore-config name="HIVEMETASTORE">
+		</hive-metastore-config>
+		<hive-server2-config name="HIVESERVER2">
+			<!-- VIP and port for HIVE HA proxy -->
+			<property name="hiverserver2_load_balancer" value="" />		
+		</hive-server2-config>
+		<hive-gateway-config name="HIVE-GATEWAY">
+		</hive-gateway-config>
+	</hive>
+
+	<hbase name="HBASE">
+		<property name="Master" value="" />
+		<property name="Slave" value="" />
+		<property name="gateway" value="" />
+		<hbase-service-config name="HBASE">
+			<property name="hdfs_service" value="HDFS" />
+			<property name="zookeeper_service" value="ZOOKEEPER" />
+		</hbase-service-config>
+		<hbase-master-config name="MASTER">
+		</hbase-master-config>
+		<hbase-regionserver-config name="REGIONSERVER">
+		</hbase-regionserver-config>			
+		<hbase-gateway-config name="HBASE-GATEWAY">
+		</hbase-gateway-config>
+	</hbase>  
+	<spark name="SPARK_ON_YARN">
+		<property name="hosts" value="" />
+
+		<spark-service-config name="spark_on_yarn">
+			<property name="yarn_service" value="YARN" />
+		</spark-service-config>
+
+		<history-server-config name="SPARK_YARN_HISTORY_SERVER">			
+		</history-server-config>
+	</spark>
+	
+	<sparkthrift name="SPARK_THRIFT">
+		<property name="hosts" value="" />
+		<property name="thrift_load_balancer" value="" />
+
+		<sparkthrift-service-config name="SPARK_THRIFT">
+			<property name="spark_on_yarn_service" value="SPARK_ON_YARN" />
+		</sparkthrift-service-config>
+	</sparkthrift>
+	<thrift-sql name="THRIFT-SQL">
+               <property name="hosts" value="" />
+               <property name="thrift_load_balancer" value="" />
+	</thrift-sql> 
+
+	
+</platform>

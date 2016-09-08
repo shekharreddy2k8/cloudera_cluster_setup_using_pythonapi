@@ -1,0 +1,15 @@
+createrepo
+cyrus-sasl-gssapi.x86_64
+deltarpm.x86_64
+httpd
+mod_ssl.x86_64
+MySQL-python.x86_64
+ntp
+perl-DBI
+postgresql-libs.x86_64
+python-argparse
+python-deltarpm.x86_64
+python-pip
+python-psycopg2
+haproxy
+keepalived

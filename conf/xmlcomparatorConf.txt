@@ -1,0 +1,4 @@
+[xml file location]
+ref_file=/opt/cto/conf/refxmlfile.xml
+plat_template_file=/opt/cto/conf/platform_template.xml
+mandFieldConf=/opt/cto/conf/mandatoryfields.conf
